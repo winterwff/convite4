@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Tag de viewport para mobile -->
+  <title>Feijão</title>
+  <style>
+    /* CORAÇÕES FLUTUANTES */
+    .heart {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      animation: float 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before {
+      content: '❤';
+      color: #ff4081;
+      font-size: 30px;
+      position: absolute;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* ESTILOS RESPONSIVOS */
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #fcecec;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column; /* Empilha elementos no mobile */
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 500px; /* Limita largura máxima */
+    }
+
+    .luffy-img {
+      width: 150px; /* Tamanho menor para mobile */
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .convite {
+      width: 100%;
+      text-align: center;
+    }
+
+    .convite h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #b30059;
+    }
+
+    .convite p {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .resposta {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    .resposta label {
+      display: block;
+      margin: 8px 0;
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* DESKTOP (acima de 768px) */
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row; /* Volta para linha no desktop */
+        padding: 40px;
+        gap: 30px;
+      }
+
+      .luffy-img {
+        width: 200px;
+      }
+
+      .convite h1 {
+        font-size: 32px;
+      }
+
+      .convite p {
+        font-size: 18px;
+      }
+
+      .resposta {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Script dos corações -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+  <!-- Conteúdo principal -->
+  <div class="container">
+    <img id="luffyImg" class="luffy-img" src="https://i.pinimg.com/736x/43/e4/9c/43e49c62d7ac268e5355cd281c7419b3.jpg" alt="Luffy">
+    <div class="convite">
+      <h1>Olá, Gatinha</h1>
+      <p>Açaizinho hoje à noite?</p>
+      <p>Eu pago 😎</p>
+
+      <div class="resposta">
+        <label><input type="radio" name="resposta" value="sim" onclick="mostrarLuffy('feliz')"> Sim!</label>
+        <label><input type="radio" name="resposta" value="nao" onclick="mostrarLuffy('triste')"> Não :(</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script das respostas -->
+  <script>
+    function mostrarLuffy(resposta) {
+      const img = document.getElementById('luffyImg');
+      
+      if (resposta === 'feliz') {
+        img.src = "https://wallpapers.com/images/high/adorable-young-luffy-aesthetic-46mjyu9hdsket274.jpeg";
+        window.open("https://wa.me/5585985457439?text=Quero%20sim%20um%20açaí%20hoje%20😋", "_blank");
+      } else if (resposta === 'triste') {
+        img.src = "https://www.comboinfinito.com.br/principal/wp-content/uploads/2020/02/One-Piece-3.jpg";
+        window.open("https://wa.me/5585985457439?text=Hoje%20não%20vai%20rolar%20açaí%20😢", "_blank");
+      }
+    }
+  </script>
+</body>
+</html>
